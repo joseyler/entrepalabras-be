@@ -27,6 +27,29 @@ create table if not exists palabras (
 );
 
 
+create table if not exists palabrasdia (
+  palabraID integer ,
+  fecha DATE not null,
+  maxIntentos integer default 10,
+  creador integer not null,
+  creado DATETIME not null,
+  primary key (fecha),
+  constraint FK_paldia_palabra foreign key (palabraID) references palabras(palabraID),
+  constraint FK_paldia_usuario foreign key (creador) references usuarios(usuarioID)
+);
+
+create table if not exists jugadas (
+  jugadaID integer auto_increment,
+  fecha DATE not null,
+  jugador integer not null,
+  inicio DATETIME,
+  fin DATETIME,
+  intentos integer default 0,
+  primary key (jugadaID),
+  constraint FK_jugada_dia foreign key (fecha) references palabrasdia(fecha),
+  constraint FK_jugada_jugador foreign key (jugador) references usuarios(usuarioID)
+);
+
 
 
 
