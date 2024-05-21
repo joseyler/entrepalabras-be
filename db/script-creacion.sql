@@ -20,6 +20,12 @@ create table if not exists usuarios (
 );
 
 
+create table if not exists palabras (
+  palabraID integer auto_increment,
+  palabra varchar(100) not null,
+  primary key (palabraID)
+);
+
 
 
 
