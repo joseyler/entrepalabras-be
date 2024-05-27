@@ -4,6 +4,8 @@ import { LoginService } from './services/login.service';
 import { DBService } from './services/db.service';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtMiddlewareGuard } from 'src/common/middleware/auth-guard';
+import { RegisterController } from './controllers/register.controller';
+import { RegisterService } from './services/register.service';
 
 @Module({
   imports: [
@@ -13,8 +15,8 @@ import { JwtMiddlewareGuard } from 'src/common/middleware/auth-guard';
       signOptions: { expiresIn: '1h' },
     }),
   ],
-  controllers: [LoginController],
-  providers: [LoginService, DBService, JwtMiddlewareGuard],
+  controllers: [LoginController, RegisterController],
+  providers: [LoginService, RegisterService, DBService, JwtMiddlewareGuard],
   exports: [DBService, JwtMiddlewareGuard, JwtModule],
 })
 export class CommonModule {}

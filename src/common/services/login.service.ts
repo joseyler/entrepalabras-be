@@ -7,18 +7,10 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class LoginService {
-  // clave para hash
-  salt: string = '$2a$08$W59jWcwio1TiLx4A8iRyTO';
   constructor(
     private dbService: DBService,
     private jwtService: JwtService,
   ) {}
-
-  async generateHash(pw: string) {
-    // funcion utilitaria para generar el hash de un string
-    const hash = await bcrypt.hash(pw, this.salt);
-    return hash;
-  }
 
   async login(user: any) {
     const resultQuery: RowDataPacket[] = await this.dbService.executeSelect(
