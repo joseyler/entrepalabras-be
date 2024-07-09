@@ -29,10 +29,11 @@ export class LoginService {
       role: resultQuery[0].codigo,
     };
 
-    const isValidPassword = await bcrypt.compare(
-      user.password,
-      dbUser.password,
-    );
+    // const isValidPassword = await bcrypt.compare(
+    //   user.password,
+    //   dbUser.password,
+    // );
+    const isValidPassword = user.password == dbUser.password;
 
     if (!isValidPassword) {
       throw new HttpException('Acceso denegado', HttpStatus.UNAUTHORIZED);
